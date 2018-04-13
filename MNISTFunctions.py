@@ -4,14 +4,17 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import accuracy_score
 import time
 
-def digit_plot(digit):
+def digit_plot(digit, ax=None):
     '''
     Plot a single digit.
     input : (1, 784) array
     '''
-    digit_reshaped = digit.values.reshape(28,28)
-    
-    fig, ax = plt.subplots()
+    try:
+        digit_reshaped = digit.values.reshape(28,28)
+    except:
+        digit_reshaped = digit.reshape(28,28)
+    if ax == None:
+        fig, ax = plt.subplots()
     ax.imshow(digit_reshaped, cmap='gray_r')
     ax.axis('off')
     
@@ -70,7 +73,7 @@ def multidigits_plot(digits, size=None, shape=None, secure=True):
     # plot the digits if digits is a 2D array
     else:
         for ax, digit in zip(axes, digits):
-            digit_reshaped = digit.values.reshape(28,28)
+            digit_reshaped = digit.reshape(28,28)
             ax.imshow(digit_reshaped, cmap='gray_r')
     
     # hide axis
