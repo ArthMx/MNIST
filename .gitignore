@@ -102,3 +102,5 @@ ENV/
 
 # data files
 Data/
+
+__pycache__
